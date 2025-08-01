@@ -1,0 +1,29 @@
+<mime-mapping>
+    <extension>js</extension>
+    <mime-type>application/javascript</mime-type>
+</mime-mapping>
+
+<mime-mapping>
+    <extension>json</extension>
+    <mime-type>application/json</mime-type>
+</mime-mapping>
+
+<mime-mapping>
+    <extension>css</extension>
+    <mime-type>text/css</mime-type>
+</mime-mapping>
+
+<mime-mapping>
+    <extension>woff2</extension>
+    <mime-type>font/woff2</mime-type>
+</mime-mapping>
+
+<mime-mapping>
+    <extension>woff</extension>
+    <mime-type>application/font-woff</mime-type>
+</mime-mapping>
+
+<mime-mapping>
+    <extension>ttf</extension>
+    <mime-type>application/x-font-ttf</mime-type>
+</mime-mapping>
