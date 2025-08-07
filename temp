@@ -1,0 +1,4 @@
+catchError(error => {
+        console.error('API failed, loading mock data.', error);
+        return this.http.get(MOCK_URLS.USERS); // Use imported constant
+      })
