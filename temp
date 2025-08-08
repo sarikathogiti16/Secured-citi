@@ -65,3 +65,29 @@ export class AppComponent {
     });
   }
 }
+
+
+
+xAxis: [{ // Default x-axis for bar values
+    categories: ['Category 1', 'Category 2', 'Category 3']
+}, { // Second x-axis for fixed endpoint
+    opposite: true, // Place it on the opposite side
+    min: 0,
+    max: 100, // Or whatever your maximum value is for the alignment line
+    title: {
+        text: 'Fixed Endpoint'
+    }
+}],
+series: [{
+    type: 'bar',
+    data: [10, 50, 30],
+}, {
+    type: 'line',
+    xAxis: 1, // Use the second x-axis
+    data: [70, 70, 70], // All points at the same x-value for alignment
+    marker: {
+        enabled: false
+    },
+    color: 'red', // Optional: make the line visible
+    lineWidth: 1
+}]
