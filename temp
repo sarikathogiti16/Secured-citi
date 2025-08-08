@@ -1,7 +1,30 @@
+const routes: Routes = [
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'report/:reportId',
+        component: ReportComponent,
+        data: { title: 'Report' }
+      },
+      {
+        path: 'summary',
+        component: SummaryComponent,
+        data: { title: 'Summary' }
+      },
+      // other children...
+    ]
+  },
+  // other routes...
+];
+
+
+
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +36,10 @@ export class AppComponent {
     private activatedRoute: ActivatedRoute,
     private titleService: Title
   ) {
-    this.setDynamicTitle();
+    this.setTitleFromRoute();
   }
 
-  setDynamicTitle() {
+  setTitleFromRoute() {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => {
@@ -25,22 +48,20 @@ export class AppComponent {
           route = route.firstChild;
         }
         return route;
-      }),
-      mergeMap(route => route.data)
-    ).subscribe(data => {
-      const baseTitle = data['title'] || 'App';
+      })
+    ).subscribe(route => {
+      const routeData = route.snapshot.data;
+      const baseTitle = routeData['title'] || 'App';
 
-      // Get reportId from route params if it exists
-      let reportId: string | undefined;
-      let route = this.activatedRoute;
-      while (route.firstChild) {
-        route = route.firstChild;
+      const params = route.snapshot.params;
+      let dynamicPart = '';
+
+      // Append dynamic reportId if available
+      if (params['reportId']) {
+        dynamicPart = ` - ${params['reportId']}`;
       }
-      route.params.subscribe(params => {
-        reportId = params['reportId'];
-        const fullTitle = reportId ? `${baseTitle} - ${reportId}` : baseTitle;
-        this.titleService.setTitle(fullTitle);
-      });
+
+      this.titleService.setTitle(`${baseTitle}${dynamicPart}`);
     });
   }
 }
