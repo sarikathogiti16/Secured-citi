@@ -131,3 +131,75 @@ chart: {
   });
 });
 
+
+
+ chart: {
+      type: 'bar',
+      marginRight: 30,
+    },
+    plotOptions: {
+      series: {
+        stacking: 'normal',
+        pointWidth: 5,
+        dataLabels: {
+          enabled: true,
+          verticalAlign: 'bottom',
+          style: {
+            color: 'black'
+          }
+        },
+        enableMouseTracking: false,
+        borderWidth: 0
+      }
+    },
+
+    legend: {
+      enabled: false
+    },
+
+    yAxis: {
+      visible: false,
+      minPadding: 0,
+      maxPadding: 0,
+      max: 100,
+      min: 0
+    },
+
+    xAxis: {
+      visible: false
+    },
+
+    series: [{
+      color: 'lightgrey',
+      data: [{
+        y: 8500
+      }, {
+        y: 900
+      }, {
+        y: 950
+      }],
+      dataLabels: {
+        align: 'right',
+        formatter: function() {
+          return this.y;
+        }
+      }
+    }, {
+      color: 'green',
+      data: [{
+        y: 15,
+        label: 'Baseball'
+      }, {
+        y: 10,
+        label: 'Footbal'
+      }, {
+        y: 5,
+        label: 'Soccer'
+      }],
+      dataLabels: {
+        align: 'left',
+        format: '{point.label}'
+      }
+    }]
+  });
+});
