@@ -93,6 +93,90 @@
         enabled: false
       }
     });
+ series: [
+        // Gray background bar
+        {
+          name: 'Max Capacity',
+          data: actualData.map((val, i) => ({
+            y: maxReports,
+            custom: { actual: val }
+          })),
+          color: '#e0e0e0',
+          enableMouseTracking: false,
+          dataLabels: {
+            enabled: true,
+            align: 'right',
+            inside: false,
+            formatter: function () {
+              return this.point.custom.actual;
+            },
+            style: {
+              color: '#333',
+              fontWeight: 'bold'
+            },
+            x: 5
+          }
+        },
+        // Actual data (green progress bar)
+        {
+          name: 'Reports',
+          data: actualData,
+          color: '#4CAF50',
+          enableMouseTracking: false,
+          dataLabels: {
+            enabled: false
+          }
+        }
+      ],
+      legend: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      }
+
+
+ series: [
+        // Gray background bar
+        {
+          name: 'Max Capacity',
+          data: actualData.map((val, i) => ({
+            y: maxReports,
+            custom: { actual: val }
+          })),
+          color: '#e0e0e0',
+          enableMouseTracking: false,
+          dataLabels: {
+            enabled: true,
+            align: 'right',
+            inside: false,
+            formatter: function () {
+              return this.point.custom.actual;
+            },
+            style: {
+              color: '#333',
+              fontWeight: 'bold'
+            },
+            x: 5
+          }
+        },
+        // Actual data (green progress bar)
+        {
+          name: 'Reports',
+          data: actualData,
+          color: '#4CAF50',
+          enableMouseTracking: false,
+          dataLabels: {
+            enabled: false
+          }
+        }
+      ],
+      legend: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      }
   </script>
 </body>
 </html>
