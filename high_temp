@@ -1,0 +1,72 @@
+Highcharts.chart('container', {
+  chart: {
+    type: 'bar',
+    spacingRight: 100
+  },
+  title: {
+    text: 'Reports by Region'
+  },
+  xAxis: {
+    categories: ['North', 'South', 'East', 'West'],
+    title: {
+      text: null
+    }
+  },
+  yAxis: {
+    min: 0,
+    max: 100, // or dynamic as before
+    visible: false
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal',
+      pointPadding: 0.25,
+      groupPadding: 0,
+      borderWidth: 0
+    }
+  },
+  series: [
+    {
+      type: 'bar',
+      name: 'Max Capacity',
+      data: [100, 100, 100, 100],
+      color: '#e0e0e0',
+      enableMouseTracking: false,
+      dataLabels: {
+        enabled: true,
+        align: 'left',
+        inside: false,
+        crop: false,
+        overflow: 'allow',
+        formatter: function () {
+          return [70, 55, 90, 40][this.point.index];
+        },
+        style: {
+          color: '#000',
+          fontWeight: 'bold',
+          fontSize: '13px'
+        },
+        x: 5
+      }
+    },
+    {
+      type: 'bar',
+      name: 'Reports',
+      data: [70, 55, 90, 40],
+      color: '#4CAF50',
+      enableMouseTracking: false,
+      dataLabels: {
+        enabled: false
+      }
+    }
+  ],
+  legend: {
+    enabled: false
+  },
+  credits: {
+    enabled: false
+  },
+  exporting: {
+    enabled: false  // ✅ Hides the three-line menu
+  }
+});
