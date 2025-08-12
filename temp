@@ -68,26 +68,66 @@ export class AppComponent {
 
 
 
-xAxis: [{ // Default x-axis for bar values
-    categories: ['Category 1', 'Category 2', 'Category 3']
-}, { // Second x-axis for fixed endpoint
-    opposite: true, // Place it on the opposite side
-    min: 0,
-    max: 100, // Or whatever your maximum value is for the alignment line
-    title: {
-        text: 'Fixed Endpoint'
-    }
-}],
-series: [{
-    type: 'bar',
-    data: [10, 50, 30],
-}, {
-    type: 'line',
-    xAxis: 1, // Use the second x-axis
-    data: [70, 70, 70], // All points at the same x-value for alignment
-    marker: {
-        enabled: false
+chart: {
+      type: 'bar',
+      marginRight: 30,
     },
-    color: 'red', // Optional: make the line visible
-    lineWidth: 1
-}]
+    plotOptions: {
+      series: {
+        stacking: 'normal',
+        pointWidth: 5,
+        dataLabels: {
+          enabled: true,
+          verticalAlign: 'bottom',
+          style: {
+            color: 'black'
+          }
+        },
+        enableMouseTracking: false,
+        borderWidth: 0
+      }
+    },
+
+    legend: {
+      enabled: false
+    },
+
+    yAxis: {
+      visible: false,
+      minPadding: 0,
+      maxPadding: 0,
+      max: 8,
+      min: 0
+    },
+
+    xAxis: {
+      visible: false
+    },
+
+    series: [{
+      color: 'grey',
+      data: [3, 5, 7],
+      dataLabels: {
+        align: 'right',
+        format: '{point.y} %'
+      }
+    }, {
+      color: 'green',
+      data: [{
+        y: 5,
+        label: 'Footbal'
+      }, {
+        y: 3,
+        label: 'Soccer'
+      }, {
+        y: 1,
+        label: 'Baseball'
+      }],
+      dataLabels: {
+        align: 'left',
+        format: '{point.label}'
+      }
+    }]
+  });
+});
+
