@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Progress-Style Region Bar Chart</title>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+
+<div id="container" style="width: 100%; height: 400px;"></div>
+
+<script>
+  // Mock dynamic JSON response
+  const jsonData = [
+    { domicileRegion: "Asia", countId: 1200 },
+    { domicileRegion: "NAM", countId: 1800 },
+    { domicileRegion: "America", countId: 200 }
+  ];
+
+  // Extract categories and values
+  const categories = jsonData.map(item => item.domicileRegion);
+  const dataValues = jsonData.map(item => item.countId);
+
+  // Determine the maximum value for background bars
+  const maxValue = Math.max(...dataValues) * 1.1; // 10% buffer
+
+  // Create background (gray) bars with maxValue for visual consistency
+  const backgroundData = new Array(dataValues.length).fill(maxValue);
+
+  Highcharts.chart('container', {
+    chart: {
+      type: 'bar'
+    },
+    title: {
+      text: 'Number of Reports by Region'
+    },
+    xAxis: {
+      categories: categories,
+      title: {
+        text: null
+      }
+    },
+    yAxis: {
+      min: 0,
+      max: maxValue,
+      visible: false // Hide y-axis if you want a cleaner look
+    },
+    legend: {
+      enabled: false
+    },
+    plotOptions: {
+      series: {
+        stacking: 'normal',
+        borderWidth: 0,
+        dataLabels: {
+          enabled: true,
+          inside: false,
+          align: 'right',
+          format: '{point.y}',
+          style: {
+            fontWeight: 'bold'
+          }
+        }
+      }
+    },
+    series: [
+      {
+        name: 'Background',
+        data: backgroundData,
+        color: '#e0e0e0', // light gray
+        enableMouseTracking: false, // disable hover/tooltip
+        showInLegend: false
+      },
+      {
+        name: 'Reports',
+        data: dataValues,
+        color: '#007bff', // blue
+        showInLegend: false
+      }
+    ]
+  });
+</script>
+
+</body>
+</html>
