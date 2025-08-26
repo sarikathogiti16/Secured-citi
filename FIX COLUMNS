@@ -1,0 +1,64 @@
+<div class="table-container">
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th class="sticky-left left-0">Col 1</th>
+        <th class="sticky-left left-100">Col 2</th>
+        <th *ngFor="let col of middleCols">{{ col }}</th>
+        <th class="sticky-right right-0">Col Last</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td class="sticky-left left-0">{{ row.col1 }}</td>
+        <td class="sticky-left left-100">{{ row.col2 }}</td>
+        <td *ngFor="let col of middleCols">{{ row[col] }}</td>
+        <td class="sticky-right right-0">{{ row.lastCol }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.custom-table {
+  border-collapse: collapse;
+  min-width: max-content;
+
+  th, td {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background: #fff;
+    white-space: nowrap;
+  }
+
+  .sticky-left {
+    position: sticky;
+    background: #f9f9f9;
+    z-index: 2;
+  }
+
+  .sticky-right {
+    position: sticky;
+    background: #f1f1f1;
+    z-index: 2;
+  }
+
+  .left-0 {
+    left: 0;
+  }
+
+  .left-100 {
+    left: 100px; // Adjust this based on actual column width
+  }
+
+  .right-0 {
+    right: 0;
+  }
+}
+
+
